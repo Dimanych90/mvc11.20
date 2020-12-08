@@ -1,0 +1,99 @@
+<?php
+/** @var \App\Model\User[] $users */
+
+//$user = new \App\Model\User();
+//$huusers = \App\Model\User::getList();
+
+
+//$ret = [];
+//foreach ($huusers as $huuser){
+//
+//     $ret[] = $huuser;
+//     var_dump($ret);
+//}
+
+/** @var \App\Model\Post[] $posts */
+
+?>
+
+
+
+<?php
+if ($users):
+    ?>
+    <?php
+    echo 'Private cabinet: ';
+    ?>
+    <?php
+    foreach ($users as $user):
+        ?>
+        <?php if ($user->get('id') == \Base\Session::getUserId()): ?>
+        <?php echo $user->get('name') ?>
+    <?php endif; ?>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br>
+<br>
+<form enctype="multipart/form-data" action="sendPost" method="post">
+    Message:<br>
+    <textarea name="message" style="width: 250px; height: 100px;"></textarea><br>
+    Прикрепить картинку:<br>
+    <input name="userfile" type="file"/><br>
+    <input type="submit" value="Send">
+</form>
+</body>
+</html>
+
+<?php foreach ($posts
+
+               as $post): ?>
+    <?php foreach ($users
+
+                   as $user): ?>
+        <?php $userId = $post->get('user_id') ?>
+        <?php if ($userId == $user->get('id')): ?>
+            <?php echo $user->get('name') ?>
+            <?php echo $post->get('message') ?>
+
+            <?php echo $post->get('datetime') ?>
+
+            <br>
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php endforeach; ?>
+
+
+<style>
+    .post {
+        border: 1px solid grey;
+        margin-top: 10px;
+        padding: 5px;
+        width: 250px;
+    }
+
+    .user {
+        color: grey;
+        font-size: 11px;
+    }
+
+    .message {
+        margin-top: 5px;
+        padding-left: 5px;
+    }
+
+    .img {
+        width: 2px;
+        height: 60px;
+        border: 2px;
+    }
+</style>
+

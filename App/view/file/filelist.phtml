@@ -1,0 +1,13 @@
+<?php
+
+/** @var \App\Model\File[] $files */
+
+?>
+<?php if ($files): ?>
+<?php foreach ($files as $file):?>
+
+<?php echo $file->get('id') ?> <?php echo $file->get('filename') ?> <?php echo ", user_id: " . $file->get('user_id'); ?> <br>
+
+<?php endforeach;?>
+
+<?php endif;?>

@@ -1,0 +1,16 @@
+
+<?php
+/** @var App\Model\User[] $users */
+//var_dump($users);die();
+
+?>
+<br>
+<?php
+foreach ($users as $user):
+?>
+
+<?php echo $user->get('id') ?> <img src="<?php echo $user->getImage($user->get('id'))?>" height="100" width="100">
+
+    <?php echo $user->get('name')?>   <?php echo $user->get('birth_date') ?> <br>
+
+<?php endforeach; ?>

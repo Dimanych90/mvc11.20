@@ -1,0 +1,14 @@
+<?php
+
+echo $title. '<br>';
+?>
+<?php
+echo "Download your avatar";
+?>
+
+<form method="post" action="/file/upload" enctype="multipart/form-data">
+    File <input type="file" name="file"><br>
+    <input type="submit" value="download">
+    If you want to safe earlier avatar
+    <input type="submit" value="continue">
+</form>
