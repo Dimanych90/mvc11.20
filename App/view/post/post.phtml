@@ -1,17 +1,6 @@
 <?php
 /** @var \App\Model\User[] $users */
 
-//$user = new \App\Model\User();
-//$huusers = \App\Model\User::getList();
-
-
-//$ret = [];
-//foreach ($huusers as $huuser){
-//
-//     $ret[] = $huuser;
-//     var_dump($ret);
-//}
-
 /** @var \App\Model\Post[] $posts */
 
 ?>
@@ -28,6 +17,7 @@ if ($users):
     foreach ($users as $user):
         ?>
         <?php if ($user->get('id') == \Base\Session::getUserId()): ?>
+    <img src="<?php echo $user->getImage(\Base\Session::getUserId()) ?>" width="100" height="100">
         <?php echo $user->get('name') ?>
     <?php endif; ?>
     <?php endforeach; ?>
@@ -61,10 +51,13 @@ if ($users):
                    as $user): ?>
         <?php $userId = $post->get('user_id') ?>
         <?php if ($userId == $user->get('id')): ?>
-            <?php echo $user->get('name') ?>
-            <?php echo $post->get('message') ?>
-
-            <?php echo $post->get('datetime') ?>
+            <div class="post">
+                <div class="user">
+             <img src=" <?php echo $user->getImage($userId) ?>" height="100" width="100">
+                    <?php echo $user->get('name') ?></div>
+                <div class="message"> <?php echo $post->get('message') ?> </div> <br>
+                <div class="datetime"> <?php echo $post->get('datetime') ?> </div>
+            </div>
 
             <br>
         <?php endif; ?>
@@ -94,6 +87,11 @@ if ($users):
         width: 2px;
         height: 60px;
         border: 2px;
+    }
+
+    .datetime {
+        color: grey;
+        font-size: 10px;
     }
 </style>
 

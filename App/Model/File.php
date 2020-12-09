@@ -26,10 +26,18 @@ class File extends Model
         }
     }
 
+    public static function uploadedPostFiles($filename)
+    {
+        if ($filename) {
+            $dir = "filepost/" . $_FILES['userfile']['name'];
+            move_uploaded_file($filename, $dir);
+        }
+    }
+
     public function fileId()
     {
-       $ret = self::selectOne();
-       return $ret['id'];
+        $ret = self::selectOne();
+        return $ret['id'];
     }
 
     public static function fileList()
