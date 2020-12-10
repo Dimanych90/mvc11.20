@@ -17,7 +17,7 @@ if ($users):
     foreach ($users as $user):
         ?>
         <?php if ($user->get('id') == \Base\Session::getUserId()): ?>
-    <img src="<?php echo $user->getImage(\Base\Session::getUserId()) ?>" width="100" height="100">
+        <img src="<?php echo $user->getImage(\Base\Session::getUserId()) ?>" width="100" height="100">
         <?php echo $user->get('name') ?>
     <?php endif; ?>
     <?php endforeach; ?>
@@ -53,9 +53,15 @@ if ($users):
         <?php if ($userId == $user->get('id')): ?>
             <div class="post">
                 <div class="user">
-             <img src=" <?php echo $user->getImage($userId) ?>" height="100" width="100">
+                    <img src=" <?php echo $user->getImage($userId) ?>" height="100" width="100">
                     <?php echo $user->get('name') ?></div>
-                <div class="message"> <?php echo $post->get('message') ?> </div> <br>
+                <div class="message"> <?php echo $post->get('message') ?> </div>
+                    <?php if ($post->get('filepost')!== null): ?>
+                <div class="img"><img src="<?php echo $post->getImage($post->get('id')) ?>" width="60" height="60">
+                </div>
+                <?php endif; ?>
+                <br>
+
                 <div class="datetime"> <?php echo $post->get('datetime') ?> </div>
             </div>
 

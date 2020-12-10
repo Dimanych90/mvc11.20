@@ -30,7 +30,7 @@ class Post extends Controller
             $message = htmlspecialchars($_POST['message']);
             $post->set($message, 'message');
             $post->set(date("H:i:s,d.M.Y"), 'datetime');
-            if ($_FILES['userfile']['name']) {
+            if (!empty($_FILES['userfile']['name'])) {
                 $post->set($_FILES['userfile']['name'], 'filepost');
                 \App\Model\File::uploadedPostFiles($_FILES['userfile']['tmp_name']);
             }

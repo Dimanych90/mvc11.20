@@ -27,4 +27,12 @@ class Post extends Model
 //        var_dump($ret); die();
         return $ret;
     }
+
+    public function getImage(int $id)
+    {
+        $ret = self::postFile($id);
+
+        return "../../../filepost/". $ret['filepost'];
+
+    }
 }

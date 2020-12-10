@@ -89,6 +89,15 @@ class Model
         return $ret;
     }
 
+    public static function postFile(int $id)
+    {
+        $table = static::$table;
+        $select = "SELECT * FROM $table WHERE id = $id";
+        $db = new Db();
+        $ret = $db->fetchOne($select,[]);
+        return $ret;
+    }
+
     public static function selectAllForPost()
     {
         $table = static::$table;
